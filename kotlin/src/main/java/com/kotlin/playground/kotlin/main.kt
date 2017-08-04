@@ -5,7 +5,4 @@ import com.kotlin.playground.kotlin.model.*
 import com.kotlin.playground.kotlin.dao.*
 
 fun main(args: Array<String>) {
-    val customers = DaoFactory.CustomerDAO.findById("ALFKI")
-    
-    println(customers)    
 }
