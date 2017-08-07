@@ -1,0 +1,7 @@
+<table>
+    #foreach ($item in $!customers)
+        <tr>
+            <td>$item.Id</td>
+        </tr>
+    #end
+</table>
