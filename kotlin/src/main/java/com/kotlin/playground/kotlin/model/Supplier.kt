@@ -1,5 +1,7 @@
 package com.kotlin.playground.kotlin.model
 
+import com.github.andrewoma.kwery.core.Session
+import com.github.andrewoma.kwery.mapper.AbstractDao
 import com.github.andrewoma.kwery.mapper.Table
 import com.github.andrewoma.kwery.mapper.TableConfiguration
 import com.github.andrewoma.kwery.mapper.Value
@@ -16,7 +18,7 @@ data class Supplier(
 )
 
 object SupplierTable : Table<Supplier, Int>("Supplier", TableConfiguration(namingConvention = { s -> s.removePrefix("_") })) {
-    
+
     val _Id by col(Supplier::Id, true)
     val _CompanyName by col(Supplier::CompanyName)
     val _ContactName by col(Supplier::ContactName)
@@ -29,13 +31,15 @@ object SupplierTable : Table<Supplier, Int>("Supplier", TableConfiguration(namin
     val _Phone by col(Supplier::Phone)
     val _Fax by col(Supplier::Fax)
     val _HomePage by col(Supplier::HomePage)
-    
+
     override fun idColumns(id: Int) = setOf(_Id of id)
 
     override fun create(value: Value<Supplier>) = Supplier(
-            value of _Id, value of _CompanyName, 
-            value of _ContactName, value of _ContactTitle, 
-                Address(value of _Address, value of _City, value of _Region, 
-                        value of _PostalCode, value of _Country), 
+            value of _Id, value of _CompanyName,
+            value of _ContactName, value of _ContactTitle,
+            Address(value of _Address, value of _City, value of _Region,
+                    value of _PostalCode, value of _Country),
             value of _Phone, value of _Fax, value of _HomePage)
 }
+
+class SupplierDAO(session: Session) : AbstractDao<Supplier, Int>(session, SupplierTable, Supplier::Id)

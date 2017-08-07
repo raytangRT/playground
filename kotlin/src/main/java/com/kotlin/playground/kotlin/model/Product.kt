@@ -1,5 +1,7 @@
 package com.kotlin.playground.kotlin.model
 
+import com.github.andrewoma.kwery.core.Session
+import com.github.andrewoma.kwery.mapper.AbstractDao
 import com.github.andrewoma.kwery.mapper.Table
 import com.github.andrewoma.kwery.mapper.TableConfiguration
 import com.github.andrewoma.kwery.mapper.Value
@@ -31,10 +33,12 @@ object ProductTable : Table<Product, Int>("Product", TableConfiguration(namingCo
     val _ReorderLevel by col(Product::ReorderLevel)
     val _Discontinued by col(Product::Discontinued)
 
-    override fun create(value: Value<Product>) = Product(value of _Id, value of _ProductName, 
-            value of _SupplierId, value of _CategoryId, value of _QuantityPerUnit, 
-            value of _UnitPrice, value of _UnitsInStock, value of _UnitsOnOrder, 
+    override fun create(value: Value<Product>) = Product(value of _Id, value of _ProductName,
+            value of _SupplierId, value of _CategoryId, value of _QuantityPerUnit,
+            value of _UnitPrice, value of _UnitsInStock, value of _UnitsOnOrder,
             value of _ReorderLevel, value of _Discontinued)
 
     override fun idColumns(id: Int) = setOf(_Id of id)
 }
+
+class ProductDAO(session: Session) : AbstractDao<Product, Int>(session, ProductTable, Product::Id)

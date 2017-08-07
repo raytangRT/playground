@@ -1,5 +1,7 @@
 package com.kotlin.playground.kotlin.model
 
+import com.github.andrewoma.kwery.core.Session
+import com.github.andrewoma.kwery.mapper.AbstractDao
 import com.github.andrewoma.kwery.mapper.Column
 import com.github.andrewoma.kwery.mapper.Table
 import com.github.andrewoma.kwery.mapper.TableConfiguration
@@ -19,3 +21,5 @@ object CategoryTable : Table<Category, Int>("Category", TableConfiguration(namin
 
     override fun create(value: Value<Category>) = Category(value of _Id, value of _CategoryName, value of _Description)
 }    
+
+class CategoryDAO(session: Session) : AbstractDao<Category, Int>(session, CategoryTable, Category::Id)

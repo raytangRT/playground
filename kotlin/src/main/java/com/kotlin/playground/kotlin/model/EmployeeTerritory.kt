@@ -1,5 +1,7 @@
 package com.kotlin.playground.kotlin.model
 
+import com.github.andrewoma.kwery.core.Session
+import com.github.andrewoma.kwery.mapper.AbstractDao
 import com.github.andrewoma.kwery.mapper.Table
 import com.github.andrewoma.kwery.mapper.TableConfiguration
 import com.github.andrewoma.kwery.mapper.Value
@@ -20,3 +22,5 @@ object EmployeeTerritoryTable : Table<EmployeeTerritory, String>("EmployeeTerrit
 
     override fun create(value: Value<EmployeeTerritory>) = EmployeeTerritory(value of _Id, value of _EmployeeId, value of _TerritoryId)
 }
+
+class EmployeeTerritoryDAO(session: Session) : AbstractDao<EmployeeTerritory, String>(session, EmployeeTerritoryTable, EmployeeTerritory::Id)

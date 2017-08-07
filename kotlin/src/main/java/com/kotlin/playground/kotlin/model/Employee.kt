@@ -1,5 +1,7 @@
 package com.kotlin.playground.kotlin.model
 
+import com.github.andrewoma.kwery.core.Session
+import com.github.andrewoma.kwery.mapper.AbstractDao
 import com.github.andrewoma.kwery.mapper.Table
 import com.github.andrewoma.kwery.mapper.TableConfiguration
 import com.github.andrewoma.kwery.mapper.Value
@@ -50,3 +52,5 @@ object EmployeeTable : Table<Employee, Int>("Employee", TableConfiguration(namin
             Address(value of _Address, value of _City, value of _Region, value of _PostalCode, value of _Country),
             value of _HomePhone, value of _Extension, value of _Photo, value of _Notes, value of _ReportsTo, value of _PhotoPath)
 }
+
+class EmployeeDAO(session: Session) : AbstractDao<Employee, Int>(session, EmployeeTable, Employee::Id)
