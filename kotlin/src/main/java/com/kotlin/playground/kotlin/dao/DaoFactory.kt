@@ -11,16 +11,16 @@ object DaoFactory {
         Class.forName("org.sqlite.JDBC")
     }
     
-    val CategoryDAO = CategoryDAO(getSession())
-    val CustomerDAO = CustomerDAO(getSession())
-    val EmployeeDAO = EmployeeDAO(getSession())
-    val EmployeeTerritoryDAO = EmployeeTerritoryDAO(getSession())
-    val OrderDAO = OrderDAO(getSession())
-    val OrderDetailDAO = OrderDetailDAO(getSession())
-    val ProductDAO = ProductDAO(getSession())
-    val RegionDAO = RegionDAO(getSession())
-    val ShipperDAO = ShipperDAO(getSession())
-    val TerritoryDAO = TerritoryDAO(getSession())
+    val CategoryDAO get() = CategoryDAO(getSession())
+    val CustomerDAO get() = CustomerDAO(getSession())
+    val EmployeeDAO get() = EmployeeDAO(getSession())
+    val EmployeeTerritoryDAO get() = EmployeeTerritoryDAO(getSession())
+    val OrderDAO get() = OrderDAO(getSession())
+    val OrderDetailDAO get() = OrderDetailDAO(getSession())
+    val ProductDAO get() = ProductDAO(getSession())
+    val RegionDAO get() = RegionDAO(getSession())
+    val ShipperDAO get() = ShipperDAO(getSession())
+    val TerritoryDAO get() = TerritoryDAO(getSession())
     
     fun getSession() =
         DefaultSession(DriverManager.getConnection("jdbc:sqlite::resource:Northwind_large.sqlite"), SqliteDialect(),
