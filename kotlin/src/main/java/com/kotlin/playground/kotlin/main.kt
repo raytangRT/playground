@@ -14,6 +14,6 @@ fun main(args: Array<String>) {
     get("/Customers") { _, _ ->
         val customers = DaoFactory.CustomerDAO.findAll()
         
-        TemplateUtil.render("templates/customers.ftl", mapOf("customers" to customers))
+        TemplateUtil.render("customers.ftl", mapOf("customers" to customers))
     }
 }

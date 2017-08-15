@@ -8,7 +8,7 @@ object TemplateUtil {
     val config = Configuration(Version(2, 3, 0))
 
     init {
-        config.setClassForTemplateLoading(this::class.java, "/")
+        config.setClassForTemplateLoading(this::class.java, "/templates")
     }
 
     public fun render(templatePath: String, parms: Map<Any, Any>?): StringWriter {
