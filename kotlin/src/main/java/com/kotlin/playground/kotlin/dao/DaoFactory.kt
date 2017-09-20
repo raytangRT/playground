@@ -4,7 +4,7 @@ import com.github.andrewoma.kwery.core.dialect.SqliteDialect
 import com.github.andrewoma.kwery.core.DefaultSession
 
 import java.sql.DriverManager
-import com.kotlin.playground.kotlin.model.*
+import com.kotlin.playground.kotlin.dao.model.*
 
 object DaoFactory {
     init {
