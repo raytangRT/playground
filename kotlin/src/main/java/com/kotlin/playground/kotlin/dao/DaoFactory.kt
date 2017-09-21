@@ -24,5 +24,6 @@ object DaoFactory {
     val ProductDAO get() = ProductDAO(getSession())
     val RegionDAO get() = RegionDAO(getSession())
     val ShipperDAO get() = ShipperDAO(getSession())
+    val SupplierDAO get() = SupplierDAO(getSession())
     val TerritoryDAO get() = TerritoryDAO(getSession())
 }

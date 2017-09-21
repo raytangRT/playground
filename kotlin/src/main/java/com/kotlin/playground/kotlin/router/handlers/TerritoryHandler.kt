@@ -1,8 +1,8 @@
 package com.kotlin.playground.kotlin.router.handlers
 
 import com.kotlin.playground.kotlin.dao.DaoFactory
-import com.kotlin.playground.kotlin.dao.model.Customer
+import com.kotlin.playground.kotlin.dao.model.Territory
 
-object CustomerHandler : AbstractHandler<Customer, String>(DaoFactory.CustomerDAO) {
+object TerritoryHandler : AbstractHandler<Territory, String>(DaoFactory.TerritoryDAO) {
     override fun String.toModelKey() = this
 }

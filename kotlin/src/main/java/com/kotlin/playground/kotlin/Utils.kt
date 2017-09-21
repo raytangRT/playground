@@ -11,6 +11,10 @@ object TemplateUtil {
         config.setClassForTemplateLoading(this::class.java, "/templates")
     }
 
+    public fun render(templatePath: String, parms: Map<Any, Any>) : String {
+        return render(templatePath, parms).toString()
+    }
+    
     public fun render(templatePath: String, parms: Map<Any, Any>?): StringWriter {
         val writer = StringWriter()
         val template = config.getTemplate(templatePath)

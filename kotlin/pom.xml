@@ -38,17 +38,22 @@
         <dependency>
             <groupId>com.github.andrewoma.kwery</groupId>
             <artifactId>core</artifactId>
-            <version>0.16</version>
+            <version>0.17</version>
         </dependency>
         <dependency>
             <groupId>com.github.andrewoma.kwery</groupId>
             <artifactId>mapper</artifactId>
-            <version>0.16</version>
+            <version>0.17</version>
         </dependency>
         <dependency>
             <groupId>com.github.andrewoma.kwery</groupId>
             <artifactId>transactional</artifactId>
-            <version>0.16</version>
+            <version>0.17</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.andrewoma.kwery</groupId>
+            <artifactId>fetcher</artifactId>
+            <version>0.17</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
