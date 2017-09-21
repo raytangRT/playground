@@ -1,4 +1,4 @@
-package com.kotlin.playground.kotlin.model
+package com.kotlin.playground.kotlin.dao.model
 
 import com.github.andrewoma.kwery.core.Session
 import com.github.andrewoma.kwery.mapper.AbstractDao
