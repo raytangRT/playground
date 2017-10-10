@@ -26,7 +26,7 @@ class Router {
             response.type("application/json")
         }
         
-        get(Paths.HOME, HomeHandler.homePage)
+        //get(Paths.HOME, HomeHandler.homePage)
         
         registerHandlers(Paths.CATEGORIES, CategoryHandler)
         registerHandlers(Paths.CUSTOMERS, CustomerHandler)
