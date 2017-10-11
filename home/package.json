@@ -9,8 +9,10 @@
     "@types/jquery": "3.2.13",
     "@types/knockout": "3.4.46",
     "@types/requirejs" : "2.1.31",
+    "@types/sammy" : "0.0.20",
     "requirejs": "2.3.5", 
     "knockout" : "3.4.2", 
-    "jquery" : "3.2.1"
+    "jquery" : "3.2.1",
+    "sammy" : "0.7.6"
   }
 }

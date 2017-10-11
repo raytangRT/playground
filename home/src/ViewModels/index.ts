@@ -1,8 +1,8 @@
 import * as ko from "knockout"
 
 class ViewModel {
-    language: KnockoutObservable<string>
-    framework: KnockoutObservable<string>
+    private language: KnockoutObservable<string>
+    private framework: KnockoutObservable<string>
 
     constructor(language: string, framework: string) {
         this.language = ko.observable(language);
