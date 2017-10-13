@@ -17,5 +17,5 @@ where Model : Any, ModelKey : Any {
 
     protected abstract fun String.toModelKey(): ModelKey
 
-    public open fun otherRoutes();
+    public abstract fun otherRoutes();
 }

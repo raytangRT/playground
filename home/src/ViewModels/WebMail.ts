@@ -1,9 +1,6 @@
 import * as ko from "knockout"
-import { Application, EventContext } from "sammy"
+import * as sammy from "sammy"
 import * as $ from "jquery"
-
-const folders = ['Inbox', 'Archive', 'Sent', 'Spam'];
-
 
 interface Mail {
     folder: string,
@@ -11,27 +8,43 @@ interface Mail {
 }
 
 class WebMailViewModel {
-    chosenFolderId: KnockoutObservable<string>;
-    chosenFolderData: KnockoutObservable<any>;
-    chosenMailData: KnockoutObservable<any>;
 
-    application: Application;
+    readonly folders = ['Inbox', 'Archive', 'Sent', 'Spam']
+
+    public chosenFolderId: KnockoutObservable<string>;
+    public chosenFolderData: KnockoutObservable<any>;
+    public chosenMailData: KnockoutObservable<any>;
+
+    public application: sammy.Application;
 
     constructor() {
         this.chosenFolderId = ko.observable();
         this.chosenFolderData = ko.observable();
         this.chosenMailData = ko.observable();
 
-        this.application = Sammy()
-            .get("#:folder", (context: EventContext) => {
-                let folderId = context.params['folder'];
+        this.application = sammy()
+            .get("#:folder", (context: sammy.EventContext) => {
+                let folderId = context.params.folder;
                 this.chosenFolderId(folderId);
                 this.chosenMailData(null);
-                $.get("http://learn.knockoutjs.com/mail", { folder: folderId }, this.chosenFolderData);
+                $.ajax("http://learn.knockoutjs.com/mail", {
+                    data: {
+                        folder: folderId
+                    },
+                    dataType: "jsonp",
+                    crossDomain: true,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Methods": "GET"
+                    }, 
+                    xhrFields: { withCredentials: true }
+                }).done((data: any) => {
+                    this.chosenFolderData($.parseJSON(data));
+                });
             })
-            .get("#:folder/:mailId", (context: EventContext) => {
-                let folderId = context.params["folder"];
-                let mailId = context.params["mailId"];
+            .get("#:folder/:mailId", (context: sammy.EventContext) => {
+                let folderId = context.params.folder;
+                let mailId = context.params.mailId;
                 this.chosenFolderId(folderId);
                 this.chosenFolderData(null);
                 $.get("http://learn.knockoutjs.com/mail", { mailId: mailId }, this.chosenMailData);

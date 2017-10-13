@@ -8,7 +8,12 @@
             "tsconfig": "home\\tsconfig.json",
             "problemMatcher": [
                 "$tsc"
-            ]
+            ], 
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }, 
+            "label": "html typescript compiler"
         }
     ]
 }

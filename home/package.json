@@ -2,8 +2,8 @@
   "name": "home",
   "version": "1.0.0",
   "description": "",
-  "main": "build/main.js",
-  "author": "",
+  "main": "bin/main.js",
+  "author": "Ray",
   "license": "ISC",
   "dependencies": {
     "@types/jquery": "3.2.13",
