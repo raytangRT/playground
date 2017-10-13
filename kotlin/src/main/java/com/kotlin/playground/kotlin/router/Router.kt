@@ -15,8 +15,8 @@ class Router {
     
     private fun <Model, ModelKey>registerHandlers(path : String, handler: AbstractHandler<Model, ModelKey>) 
     where Model : Any, ModelKey : Any {
-        post("${path}", handler.listAll, toJson)
-        post("${path}/:Id", handler.listById, toJson)
+        get("${path}", handler.listAll, toJson)
+        get("${path}/:Id", handler.listById, toJson)
     }
     
     init {
@@ -26,7 +26,7 @@ class Router {
             response.type("application/json")
         }
         
-        get(Paths.HOME, HomeHandler.homePage)
+        //get(Paths.HOME, HomeHandler.homePage)
         
         registerHandlers(Paths.CATEGORIES, CategoryHandler)
         registerHandlers(Paths.CUSTOMERS, CustomerHandler)

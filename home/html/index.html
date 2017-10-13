@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Knockout!</title>
+    </head>
+    <body>
+        <p>
+            Hello from
+            <strong data-bind="text: language"></strong>
+            and
+            <strong data-bind="text: framework"></strong>!
+        </p>
+
+        <p>Language: <input data-bind="value: language" /></p>
+        <p>Framework: <input data-bind="value: framework" /></p>
+
+        <script src="../node_modules/requirejs/require.js"></script>
+        <script src="../bin/require-config.js"></script>
+        <script>
+            require(["../bin/ViewModels/index"]);
+        </script>
+    </body>
+</html>
