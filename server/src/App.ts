@@ -2,6 +2,7 @@ import * as path from 'path'
 import * as express from 'express'
 import * as logger from 'morgan'
 import * as bodyParser from 'body-parser'
+import * as helmet from 'helmet'
 
 import HeroRouter from './routes/HeroRouter';
 
@@ -18,6 +19,7 @@ class App {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express.use(helmet());
     }
 
     private addRoutes() {
