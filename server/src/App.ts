@@ -5,6 +5,7 @@ import * as bodyParser from 'body-parser'
 import * as helmet from 'helmet'
 
 import HeroRouter from './routes/HeroRouter';
+import AuthenticationRouter from './routes/AuthenticationRouter'
 
 class App {
     public express: express.Application;
@@ -23,18 +24,14 @@ class App {
     }
 
     private addRoutes() {
-        /* This is just to get up and running, and to make sure what we've got is
-             * working so far. This function will change when we start to add more
-             * API endpoints */
         let router = express.Router();
         // placeholder route handler
         router.get('/', (req, res, next) => {
-            res.json({
-                message: 'Hello World!'
-            });
+            res.status(403).end('forbidden')
         });
         this.express.use('/', router);
         this.express.use('/api/v1/heroes', HeroRouter);
+        this.express.use('/api/v1/authenticate', AuthenticationRouter);
     }
 }
 

@@ -1,37 +1,26 @@
-import {Router, Request, Response, NextFunction} from 'express';
+import { BaseRouter } from './BaseRouter';
+import { Request, Response, NextFunction } from 'express';
+import { Hero } from "../entities/Hero";
 
 const Heroes = require('../data');
 
-export class HeroRouter {
-  router: Router
+export class HeroRouter extends BaseRouter {
 
-  /**
-   * Initialize the HeroRouter
-   */
-  constructor() {
-    this.router = Router();
-    this.init();
+  protected init() {
+    this.router.get('/', this.getAll);
+    this.router.get('/:id', this.getById);
   }
 
-  /**
-   * GET all Heroes.
-   */
   public getAll(req: Request, res: Response, next: NextFunction) {
     res.send(Heroes);
   }
 
-  /**
-   * Take each handler, and attach to one of the Express.Router's
-   * endpoints.
-   */
-  init() {
-    this.router.get('/', this.getAll);
+  public getById(req: Request, res: Response, next: NextFunction) {
+    let id: Number = req.params["id"];
+    let hero: Hero = Heroes.find((hero: Hero) => hero.id == id);
+    res.send(hero);
   }
 
 }
 
-// Create the HeroRouter, and export its configured Express.Router
-const heroRoutes = new HeroRouter();
-heroRoutes.init();
-
-export default heroRoutes.router;
+export default new HeroRouter().router;
