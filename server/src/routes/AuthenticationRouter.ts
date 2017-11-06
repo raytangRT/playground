@@ -1,34 +1,32 @@
 import { BaseRouter } from './BaseRouter';
 import { Request, Response, NextFunction } from 'express';
 
-import * as jwt from 'jsonwebtoken'
-
-interface AuthenicateUser {
-    userName: string;
-}
+import { AuthenticationHandler, AuthenicateUser } from "../controls/AuthenticationHandler";
 
 export class AuthenticationRouter extends BaseRouter {
 
+    private static hanlder: AuthenticationHandler = new AuthenticationHandler();
+
     protected init() {
-        this.router.get('/', this.authenticate);
+        this.router.post('/', this.authenticate);
     }
 
     private authenticate(req: Request, res: Response, next: NextFunction): void {
-        let v: AuthenicateUser = { userName: "admin2" }
 
-        let token: string = jwt.sign(v, "secretKey", {
-            expiresIn: "10min"
-        });
+        if (req.cookies) {
+            res.status(404).send('authenticated');
+        }
 
-        res.json({
-            status: "success",
-            token: token
-        })
+        let v: AuthenicateUser = <AuthenicateUser>req.body
 
-        jwt.verify(token, "secretKey", (err, decoded) => {
-            
-            console.log(decoded);
-        });
+        let token: string = AuthenticationRouter.hanlder.generateToken(v);
+
+        res.cookie('auth', true)
+            .cookie('token', token)
+            .json({
+                status: "success"
+            })
+
     }
 }
 

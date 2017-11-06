@@ -1,0 +1,7 @@
+{
+    "type": "sqlite",
+    "entities": [
+        "**/entities/*.js"
+    ],
+    "database": "./bin/resources/Northwind_large.sqlite"
+}
