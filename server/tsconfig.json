@@ -6,7 +6,10 @@
       "target": "es6", 
       "lib": ["es2016","dom"], 
       "emitDecoratorMetadata": true,
-      "experimentalDecorators": true
+      "experimentalDecorators": true, 
+      "types": [
+        "reflect-metadata"
+      ]
   },
   "include" : [
       "src/**/*"

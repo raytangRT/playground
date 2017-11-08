@@ -1,7 +1,7 @@
 {
     "type": "sqlite",
     "entities": [
-        "**/entities/*.js"
+        "**/domain/entity/*.js"
     ],
-    "database": "./bin/resources/Northwind_large.sqlite"
+    "database": "./resources/Chinook.sqlite"
 }

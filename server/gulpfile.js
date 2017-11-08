@@ -20,7 +20,6 @@ gulp.task('watch', ['scripts'], () => {
 gulp.task('assets', () => {
     gulp.src(JSON_FILES).pipe(gulp.dest('bin'));
     gulp.src(ENV_FILES).pipe(gulp.dest('bin'));
-    gulp.src('resources/Northwind_large.sqlite').pipe(gulp.dest('bin/resources'));
     return gulp;
 });
 
