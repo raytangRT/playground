@@ -11,7 +11,6 @@ export class UserRoute extends BaseRoute {
 
     constructor(private userDomainService: UserDomainService) {
         super('/api/v1/user');
-        console.log(this.userDomainService);
     }
 
     protected init() {
