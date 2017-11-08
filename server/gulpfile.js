@@ -1,8 +1,10 @@
 /*jshint esversion: 6 */
 
 const gulp = require('gulp');
+const nodemon = require("gulp-nodemon");
 const ts = require('gulp-typescript');
 const JSON_FILES = ['src/*.json', 'src/**/*.json'];
+const ENV_FILES = ['src/.env'];
 
 const tsProject = ts.createProject('tsconfig.json');
 
@@ -16,7 +18,19 @@ gulp.task('watch', ['scripts'], () => {
 });
 
 gulp.task('assets', () => {
-    return gulp.src(JSON_FILES).pipe(gulp.dest('bin'));
+    gulp.src(JSON_FILES).pipe(gulp.dest('bin'));
+    gulp.src(ENV_FILES).pipe(gulp.dest('bin'));
+    return gulp;
 });
 
-gulp.task('default', ['watch', 'assets']);
+gulp.task('server', () => {
+    nodemon({
+        script: "bin/index.js",
+        env: { "NODE_ENV": "Development" }
+    })
+        .on("restart", () => {
+            console.log("restarted");
+        });
+});
+
+gulp.task('default', ['watch', 'assets', 'server']);

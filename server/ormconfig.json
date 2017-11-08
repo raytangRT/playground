@@ -1,0 +1,7 @@
+{
+    "type": "sqlite",
+    "entities": [
+        "**/domain/entity/*.js"
+    ],
+    "database": "./resources/Chinook.sqlite"
+}
