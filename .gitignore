@@ -1,3 +1,4 @@
 /kotlin/target/
 node_modules/
 node_modules
+server/resources/Chinook.sqlite
