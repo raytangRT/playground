@@ -1,12 +1,29 @@
-define(["require", "exports", "knockout"], function (require, exports, ko) {
+define(["require", "exports", "knockout", "jquery"], function (require, exports, ko, $) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     class ViewModel {
-        constructor(language, framework) {
-            this.language = ko.observable(language);
-            this.framework = ko.observable(framework);
+        constructor(userName, password, result) {
+            this.userName = ko.observable(userName);
+            this.password = ko.observable(password);
+            this.result = ko.observable(result);
+        }
+        login() {
+            const ajaxSetting = {
+                url: 'http://localhost:3000/api/v1/user/login',
+                data: {
+                    "userName": this.userName(),
+                    "password": this.password()
+                },
+                type: 'POST'
+            };
+            $.ajax(ajaxSetting)
+                .done((data, status) => {
+                this.result(data.status);
+            });
+            //location.hash = folder;
         }
     }
-    ko.applyBindings(new ViewModel("12", "13"));
+    ko.applyBindings(new ViewModel("admin35", "fasdfasd fs", ""));
 });
+
 //# sourceMappingURL=index.js.map

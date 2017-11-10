@@ -47,4 +47,5 @@ define(["require", "exports", "knockout", "sammy", "jquery"], function (require,
     }
     ko.applyBindings(new WebMailViewModel());
 });
+
 //# sourceMappingURL=WebMail.js.map

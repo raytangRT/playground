@@ -4,10 +4,18 @@ import * as http from 'http'
 import * as debug from 'debug'
 import { createConnection, useContainer } from 'typeorm'
 import { Container } from "typedi";
+import * as dotenv from 'dotenv';
 
 import App from './infra/App'
 
-const port = 3000;
+let result: dotenv.DotenvResult =
+    dotenv.config({ path: "bin/.env" });
+
+if (result.error !== undefined) {
+    throw result.error;
+}
+
+const port = process.env.Port || 3000;
 
 useContainer(Container)
 createConnection().then(async connection => {

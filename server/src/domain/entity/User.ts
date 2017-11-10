@@ -14,4 +14,7 @@ export class User {
 
     @Column({ type: "text" })
     status: string;
+
+    @Column({type: "text", name: "login_time"})
+    loginTime: string;
 }

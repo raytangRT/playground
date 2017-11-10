@@ -1,8 +1,5 @@
 /kotlin/target/
 node_modules/
 node_modules
-<<<<<<< HEAD
 server/resources/Chinook.sqlite
-=======
 /server/bin
->>>>>>> parent of 6a3bad3... ss

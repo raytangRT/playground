@@ -1,34 +1,30 @@
 import { User } from '../entity/User';
 import * as jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv';
+import { Service } from 'typedi';
 
+export interface AuthenticationInfo {
+    userName: string;
+    salt: string;
+}
+
+@Service()
 export class AuthenticationService {
 
     private tokenSecertKey: string;
 
     constructor() {
-        let result: dotenv.DotenvResult =
-            dotenv.config({ path: "bin/.env" });
-
-        if (result.error !== undefined) {
-            throw result.error;
-        }
-
         this.tokenSecertKey = process.env.TOKEN_SECRET_KEY;
     }
 
-    generateToken(authenticateUser: User): string {
-        let token: string = jwt.sign(authenticateUser, this.tokenSecertKey, {
-            expiresIn: "10min"
+    generateToken(info: AuthenticationInfo): string {
+        let token: string = jwt.sign(info, this.tokenSecertKey, {
+            expiresIn: "1hr"
         });
 
         return token;
     }
 
-    verifyToken(token: string): User {
-        let verified: User = <User>jwt.verify(token, this.tokenSecertKey);
-        return verified;
+    verifyToken(token: string): AuthenticationInfo {
+        return <AuthenticationInfo>jwt.verify(token, this.tokenSecertKey);
     }
 }
-
-export default new AuthenticationService();

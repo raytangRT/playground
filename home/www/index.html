@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome Page</title>
+</head>
+
+<body>
+    <h1>
+        Welcome Page
+    </h1>
+    <div class="login">
+        <p>Username:
+            <input data-bind="value: userName" />
+        </p>
+        <p>password:
+            <input data-bind="value: password" type="password" />
+        </p>
+        <button data-bind="click: login">Login</button>
+        <p data-bind="text: result"></p>
+    </div>
+
+
+    <script src="../node_modules/requirejs/require.js"></script>
+    <script src="../bin/require-config.js"></script>
+    <script>
+        require(["../bin/ViewModels/index"]);
+    </script>
+</body>
+
+</html>
