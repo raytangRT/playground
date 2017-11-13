@@ -1,6 +1,3 @@
-import * as ko from "knockout"
-import * as $ from "jquery"
-
 interface LoginInfo {
     userName: String;
     password: String;

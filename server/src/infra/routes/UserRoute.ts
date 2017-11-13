@@ -1,9 +1,8 @@
 import { UserDomainService } from '../../domain/service/UserDomainService';
 import { User } from '../../domain/entity/User';
 import BaseRoute from './BaseRoute';
-import { Router, Request, Response, NextFunction } from 'express';
-import { getManager } from "typeorm";
-import { Service, Inject } from "typedi"
+import { Request, Response } from 'express';
+import { Service } from "typedi"
 import { AuthenticationService } from '../../domain/service/AuthenticationService';
 
 @Service()
@@ -21,12 +20,12 @@ export class UserRoute extends BaseRoute {
         this.router.post('/logout', this.logout.bind(this));
     }
 
-    private async listAll(req: Request, res: Response, next: NextFunction) {
+    private async listAll(req: Request, res: Response) {
         const users: User[] = await this.userDomainService.getUsers();
         res.json(users);
     }
 
-    private async register(req: Request, res: Response, next: NextFunction) {
+    private async register(req: Request, res: Response) {
         const user: User = await this.userDomainService.addUser(<User>req.body);
         res.json(user);
     }

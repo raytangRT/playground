@@ -43,6 +43,8 @@ export class UserDomainService extends IDomainSercice {
         
         if (user === undefined) {
             throw `user ${userName} not found`;
+        } else if (user.password !== password) {
+            throw `user ${userName} passwrod incorrect`;
         }
 
         const salt: string = crypto.randomBytes(16).toString('base64');
